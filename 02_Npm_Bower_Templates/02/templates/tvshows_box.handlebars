@@ -1,0 +1,13 @@
+<!-- Box -->
+<div class="box">
+    <div class="head">
+        <h2>{{shows_head}}</h2>
+        <p class="text-right"><a href="#">See all</a></p>
+    </div>
+
+    {{#each tvshows}}
+    {{> tvshow this }}
+    {{/each}}
+
+</div>
+<!-- end Box -->

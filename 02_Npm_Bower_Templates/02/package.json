@@ -1,0 +1,14 @@
+{
+  "name": "tvshow-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/handlebars templates/content.handlebars -f templates/content.js && ./node_modules/.bin/handlebars templates/tvshow.handlebars -f templates/tvshow.js && ./node_modules/.bin/handlebars templates/tvshows_box.handlebars -f templates/tvshows_box.js"
+  },
+  "author": "Oleksii Leshchenko",
+  "license": "ISC",
+  "devDependencies": {
+    "handlebars": "^4.0.11"
+  }
+}
