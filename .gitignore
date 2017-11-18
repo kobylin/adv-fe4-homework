@@ -7,5 +7,6 @@ npm-debug.log
 package-lock.json
 bower_components
 .idea
+js/libs
 
 
