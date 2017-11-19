@@ -36,7 +36,6 @@
 
     var html = Handlebars.templates.content({ new_shows: new_shows_data, top_shows: top_shows_data, voted_shows: voted_shows_data });
 
-    var oldHTML = document.getElementById('main').innerHTML;
-    document.getElementById('main').innerHTML = html + oldHTML;
+    document.getElementById('main_content').innerHTML = html;
 
 })(window, Handlebars);

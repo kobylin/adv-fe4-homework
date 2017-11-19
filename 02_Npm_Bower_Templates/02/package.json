@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/handlebars templates/content.handlebars -f templates/content.js && ./node_modules/.bin/handlebars templates/tvshow.handlebars -f templates/tvshow.js && ./node_modules/.bin/handlebars templates/tvshows_box.handlebars -f templates/tvshows_box.js"
+    "build": "./node_modules/.bin/handlebars templates/*.handlebars -f templates/templates.js"
   },
   "author": "Oleksii Leshchenko",
   "license": "ISC",
