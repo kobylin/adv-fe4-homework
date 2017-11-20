@@ -1,0 +1,15 @@
+{
+  "name": "advde4_npm",
+  "version": "1.0.0",
+  "description": "Lesson 2, task 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bower": "node_modules/.bin/bower install"
+  },
+  "author": "Oleksii Leshchenko",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.8.2"
+  }
+}
