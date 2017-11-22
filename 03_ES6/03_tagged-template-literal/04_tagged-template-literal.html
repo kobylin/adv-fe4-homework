@@ -22,10 +22,22 @@
         JS: 'JavaScript'
     };
 
-    const firstName = 'Sergey ';
-    const lastName = 'Puzankov';
+    const firstName = 'Oleksii';
+    const lastName = 'Leshchenko';
 
-    const sentence = `Hello my name is ${firstName} ${lastName} and I love to code ${'HTML'}, ${'CSS'} and ${'JS'}`;
+    const makeAbbr = function (strings, ...values) {
+
+        return strings.reduce((accumulate, current, i) => {
+            const abbtOpenAtr = dict[values[i]] ? `<abbr title="${dict[values[i]]}">` : "";
+            const abbtrCloseAtr = dict[values[i]] ? "</abbr>" : "";
+
+            return `${accumulate}${current}${abbtOpenAtr}${values[i] || ''}${abbtrCloseAtr}`
+        }, '');
+    };
+
+
+    const sentence = makeAbbr`Hello my name is ${firstName} ${lastName} and I love to code ${'HTML'}, ${'CSS'} and ${'JS'}`;
+
 
     const bio = document.querySelector('.bio');
     const p = document.createElement('p');
