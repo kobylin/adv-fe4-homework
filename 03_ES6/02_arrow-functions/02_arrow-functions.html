@@ -32,13 +32,10 @@
 <script>
     const data = document.querySelectorAll("li");
 
-    const total = Array.from(
-        data,
-        li => {
+    const total = Array.prototype.filter.call(data, li => li.textContent.includes("ES6"))
+        .map(li => {
             return {time: li.getAttribute("data-time"), name: li.textContent};
-        }
-    )
-        .filter(item => item.name.includes("ES6"))
+        })
         .map(item => item.time)
         .map(item => item.split(':'))
         .map(item => Number(item[0]) * 60 + Number(item[1]))
