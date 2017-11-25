@@ -11,7 +11,43 @@
     </div>
 
     <script>
+        function ajax(url) {
+            fetch(url).then(data => data.json()).then(data => dataGen.next(data))
+        }
 
-    </script>
+        let reposPerUser = {};
+
+
+        function* getGithubUsersRepos() {
+            console.log('fetching frontend-science info');
+            const firm = yield ajax('https://api.github.com/orgs/frontend-science');
+            console.log(firm);
+
+            console.log('fetching public members');
+            const public_members = yield ajax(firm.public_members_url.replace('{/member}', ''));
+            console.log(public_members);
+
+            console.log('fetching public repos');
+            for(member of public_members) {
+                console.log(`fetching ${member.login} public repos`);
+                const repos = yield ajax(member.repos_url);
+                console.log(repos);
+                reposPerUser = {
+                    ...reposPerUser,
+                    [member.login]: repos.map( repo => {return {html_url: repo.html_url, language: repo.language} })
+                }
+            }
+
+            console.log(reposPerUser);
+            return reposPerUser;
+        }
+
+        const dataGen = getGithubUsersRepos();
+        dataGen.next();
+
+        console.log(reposPerUser);
+
+
+      </script>
 </body>
 </html>
