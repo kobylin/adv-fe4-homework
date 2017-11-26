@@ -3,12 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Github Repo List</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 </head>
 <body>
 
     <div id="content">
 
     </div>
+
+    <script id="github_users" type="text/x-handlebars-template">
+        <div class="users">
+            {{#each user_repos}}
+            <h2>{{@key}}</h2>
+            {{> user_repos repos=this}}
+            {{/each}}
+        </div>
+    </script>
+
+    <script id="user_repos" type="text/x-handlebars-template">
+        <ul>
+            {{#each repos}}
+            <li>
+                <a href="{{html_url}}">{{html_url}}</a>
+                <span>{{language}}</span>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
 
     <script>
         function ajax(url) {
@@ -39,14 +60,20 @@
             }
 
             console.log(reposPerUser);
-            return reposPerUser;
+
+            const html = github_users_template({ user_repos: reposPerUser });
+            document.getElementById("content").innerHTML = html;
         }
 
         const dataGen = getGithubUsersRepos();
         dataGen.next();
 
-        console.log(reposPerUser);
+        const github_users_source   = document.getElementById("github_users").innerHTML;
+        const github_users_template = Handlebars.compile(github_users_source);
+        const user_repos_source   = document.getElementById("user_repos").innerHTML;
+        const user_repos_template = Handlebars.compile(user_repos_source);
 
+        Handlebars.registerPartial("user_repos", user_repos_template);
 
       </script>
 </body>
